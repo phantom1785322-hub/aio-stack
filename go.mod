@@ -3,7 +3,7 @@ module github.com/aio-stack/aio-stack
 go 1.23.0
 
 require (
-	github.com/alecthomas/kong v0.2.1
+	github.com/alecthomas/kong v1.16.0
 	github.com/klauspost/cpuid/v2 v2.2.6
 	github.com/pelletier/go-toml/v2 v2.2.2
 	github.com/shirou/gopsutil/v3 v3.24.5
@@ -20,7 +20,6 @@ require (
 	github.com/lufia/plan9stats v0.0.0-20211012122336-39d0f177ccd0 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
-	github.com/pkg/errors v0.9.1 // indirect
 	github.com/power-devops/perfstat v0.0.0-20210106213030-5aafc221ea8c // indirect
 	github.com/sagikazarmark/locafero v0.4.0 // indirect
 	github.com/sagikazarmark/slog-shim v0.1.0 // indirect
