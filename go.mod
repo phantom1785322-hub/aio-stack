@@ -1,10 +1,10 @@
 module github.com/aio-stack/aio-stack
 
-go 1.23.0
+go 1.24.0
 
 require (
 	github.com/alecthomas/kong v0.2.1
-	github.com/klauspost/cpuid/v2 v2.2.6
+	github.com/klauspost/cpuid/v2 v2.4.0
 	github.com/pelletier/go-toml/v2 v2.2.2
 	github.com/shirou/gopsutil/v3 v3.24.5
 	github.com/spf13/cobra v1.8.1
@@ -37,7 +37,7 @@ require (
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.9.0 // indirect
 	golang.org/x/exp v0.0.0-20230905200255-921286631fa9 // indirect
-	golang.org/x/sys v0.30.0 // indirect
+	golang.org/x/sys v0.41.0 // indirect
 	golang.org/x/text v0.22.0 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 )
