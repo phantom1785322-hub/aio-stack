@@ -1,0 +1,77 @@
+# Release Workflow for aio-stack
+
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (e.g., v0.2.0)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  packages: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  goreleaser:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache: true
+
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v6
+        with:
+          distribution: goreleaser
+          version: '~> v2'
+          args: release --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  notify-discord:
+    if: ${{ secrets.DISCORD_WEBHOOK_URL != '' }}
+    needs: goreleaser
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord Notification
+        run: |
+          TAG="${{ github.ref_name }}"
+          RELEASE_URL="https://github.com/phantom1785322-hub/aio-stack/releases/tag/${TAG}"
+          
+          curl -X POST "${{ secrets.DISCORD_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d @- << EOF
+          {
+            "embeds": [{
+              "title": "🚀 aio-stack ${TAG} Released!",
+              "url": "${RELEASE_URL}",
+              "color": 5814783,
+              "description": "Universal foundation for cross-platform developer tools",
+              "fields": [
+                {"name": "🔍 Platform Detection", "value": "OS, Arch, CPU features, SIMD, containers", "inline": true},
+                {"name": "⚡ Optimizer", "value": "Object pooling, string interning, SIMD batching, GC tuning", "inline": true},
+                {"name": "🧠 Code Intelligence", "value": "Tree-sitter parsers for 15+ languages", "inline": true},
+                {"name": "🤖 Local AI Engine", "value": "Phi-3, CodeLlama via WASM", "inline": true},
+                {"name": "🔌 Plugin System", "value": "WASM + Go plugins, hot-reload", "inline": true},
+                {"name": "🖥️ CLI Framework", "value": "Cobra + Kong, shell completions", "inline": true}
+              ],
+              "footer": {"text": "Built with Go, Tree-sitter, llama.cpp, wasmer"},
+              "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            }]
+          }
+          EOF

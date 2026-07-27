@@ -1,0 +1,78 @@
+name: Question / Support
+description: Ask a question about aio-stack usage or configuration
+title: "[Question]: "
+labels: ["question", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a question about aio-stack? We're happy to help!
+        
+        **Before asking:**
+        - Check the [documentation](https://aio-stack.dev/docs)
+        - Search existing [discussions](https://github.com/aio-stack/aio-stack/discussions)
+        - Run `aio-stack doctor` to verify your setup
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: What area does your question relate to?
+      options:
+        - Platform Detection
+        - Optimizer
+        - Code Intelligence
+        - AI Engine
+        - Plugin System
+        - CLI Framework
+        - Config System
+        - Cross-platform Issues
+        - Performance
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: Be as specific as possible
+      placeholder: |
+        How do I optimize the object pool size for my specific workload?
+        I've tried adjusting the pool size but it doesn't seem to affect performance...
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What have you tried? What's your setup?
+      placeholder: |
+        - OS: Linux (Ubuntu 22.04)
+        - aio-stack: v0.1.0-dev
+        - CPU: AMD Ryzen 9 5900X (AVX2)
+        - I've tried: adjusting pool size, checking docs
+
+  - type: textarea
+    id: config
+    attributes:
+      label: Relevant Config
+      description: Share relevant parts of your config (sanitize tokens!)
+      placeholder: |
+        # aio-stack config
+        optimizer:
+          pool_size: 1024
+          enable_interning: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I've checked the documentation
+          required: true
+        - label: I've searched existing issues/discussions
+          required: true
+        - label: I've run `aio-stack doctor` and it passes
+          required: false

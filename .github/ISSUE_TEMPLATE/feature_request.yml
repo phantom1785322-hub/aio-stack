@@ -1,0 +1,96 @@
+name: Feature Request
+description: Suggest a new feature or enhancement for aio-stack
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a feature! Please fill out the form below.
+        
+        **Before submitting:**
+        - Check if the feature is already requested (search issues)
+        - Consider if it fits aio-stack's scope (local-first, cross-platform, extensible)
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve? What's the use case?
+      placeholder: |
+        As a developer building cross-platform tools, I need reliable CPU feature detection
+        so that my tools can optimize for the target hardware.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe your ideal solution
+      placeholder: |
+        Add SIMD feature detection for RISC-V V extension in platform detection.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Other solutions or workarounds you've considered
+      placeholder: |
+        - Using platform-specific code (but not portable)
+        - Using external libraries (but adds dependencies)
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Feature Scope
+      description: Which part of aio-stack does this affect?
+      options:
+        - Platform Detection
+        - Optimizer
+        - Code Intelligence
+        - AI Engine
+        - Plugin System
+        - CLI Framework
+        - Config System
+        - Cross-platform / Build
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this to you?
+      options:
+        - Critical (blocking my project)
+        - High (would significantly improve my project)
+        - Medium (nice to have)
+        - Low (just an idea)
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Mockups, screenshots, related issues, or any other context
+      placeholder: |
+        - Related: #123, #456
+        - Similar feature in: cpuid crate (Rust), cpuid.h (C)
+
+  - type: checkboxes
+    id: willingness
+    attributes:
+      label: Willingness to Contribute
+      options:
+        - label: I'm willing to implement this feature
+          required: false
+        - label: I can help with testing
+          required: false
+        - label: I can help with documentation
+          required: false
+        - label: I just want to request the feature
+          required: false

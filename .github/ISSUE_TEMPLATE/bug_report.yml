@@ -1,0 +1,107 @@
+name: Bug Report
+description: Report a bug in aio-stack
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug! Please fill out the form below.
+        
+        **Before submitting:**
+        - Check if the bug is already reported (search issues)
+        - Try the latest release: `aio-stack version`
+        - Run `aio-stack doctor` to verify your setup
+
+  - type: input
+    id: version
+    attributes:
+      label: aio-stack Version
+      description: Run `aio-stack version` and paste the output
+      placeholder: "aio-stack version 0.1.0 (abc1234)"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating System
+      description: OS and version (e.g., Ubuntu 22.04, macOS 14.5, Windows 11)
+      placeholder: "Ubuntu 22.04 LTS"
+    validations:
+      required: true
+
+  - type: input
+    id: arch
+    attributes:
+      label: Architecture
+      description: CPU architecture (e.g., amd64, arm64, armv7)
+      placeholder: "amd64"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: Clear and concise description of the bug
+      placeholder: "When I run `aio-stack platform` on ARM64, it shows wrong SIMD width..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Step-by-step instructions to reproduce the bug
+      placeholder: |
+        1. Run `aio-stack platform` on ARM64 machine
+        2. Observe SIMD width output
+        3. Compare with expected value
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What you expected to happen
+      placeholder: "`aio-stack platform` should show SIMD width of 16 bytes for NEON"
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened
+      placeholder: "`aio-stack platform` shows SIMD width of 8 bytes"
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / Output
+      description: Relevant logs, error messages, or `aio-stack doctor` output
+      placeholder: |
+        $ aio-stack doctor
+        ✅ Platform: linux/arm64 | 8 CPUs | NEON | 16GB | SIMD: 16B
+        ...
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Any other information, config, or screenshots
+      placeholder: "Config: ~/.config/aio-stack/config.toml (attached)"
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I've searched existing issues and this is not a duplicate
+          required: true
+        - label: I'm using the latest release
+          required: true
+        - label: I've run `aio-stack doctor` and it passes
+          required: false
+        - label: I've included `aio-stack doctor` output
+          required: true
